@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.568f0930.css",
+    "main.js": "/static/js/main.72ce39a3.js",
+    "static/js/787.244e8ae1.chunk.js": "/static/js/787.244e8ae1.chunk.js",
+    "static/media/The Killers Homepage 1.png": "/static/media/The Killers Homepage 1.49201a6b751eee689cb2.png",
+    "static/media/DA Album Photo.png": "/static/media/DA Album Photo.eec908dc07bd32578b41.png",
+    "static/media/SD Album Photo.png": "/static/media/SD Album Photo.bc8243805025a85f1057.png",
+    "static/media/PM Album Photo.png": "/static/media/PM Album Photo.ba530c8814304f47d30b.png",
+    "static/media/WW Album Photo.png": "/static/media/WW Album Photo.12dd22a86537bf07b154.png",
+    "static/media/BB Album Photo.png": "/static/media/BB Album Photo.f5ebad619c2b71fca8b7.png",
+    "static/media/ITM Album Photo.png": "/static/media/ITM Album Photo.6ecd562854229f16f6db.png",
+    "static/media/HF Album Photo.png": "/static/media/HF Album Photo.e4f1cf3ef63daa093bba.png",
+    "static/media/ST Album Photo.png": "/static/media/ST Album Photo.6cfccab4867cd094d57f.png",
+    "static/media/BlackRaisin2.webp": "/static/media/BlackRaisin2.fa08973b241f9e160561.webp",
+    "static/media/killersLogo.png": "/static/media/killersLogo.d4a8ebbbcc19f12e8878.png",
+    "index.html": "/index.html",
+    "main.568f0930.css.map": "/static/css/main.568f0930.css.map",
+    "main.72ce39a3.js.map": "/static/js/main.72ce39a3.js.map",
+    "787.244e8ae1.chunk.js.map": "/static/js/787.244e8ae1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.568f0930.css",
+    "static/js/main.72ce39a3.js"
+  ]
+}
