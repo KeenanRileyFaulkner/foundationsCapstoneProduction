@@ -1,11 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.2e492810.css",
-    "main.js": "/static/js/main.bd7e8d58.js",
+    "main.css": "/static/css/main.4a487d03.css",
+    "main.js": "/static/js/main.a36c0451.js",
     "static/js/787.244e8ae1.chunk.js": "/static/js/787.244e8ae1.chunk.js",
     "static/media/The Killers Homepage 1.png": "/static/media/The Killers Homepage 1.49201a6b751eee689cb2.png",
-    "static/media/fullBandTransparent.png": "/static/media/fullBandTransparent.f01e3d7596994ab33933.png",
+    "static/media/Ronnie-full-band-color.png": "/static/media/Ronnie-full-band-color.549d791e584573b23800.png",
+    "static/media/Mark-full-band-color.png": "/static/media/Mark-full-band-color.3f208587f67dde78a13b.png",
+    "static/media/Brandon-full-band-color.png": "/static/media/Brandon-full-band-color.f285194caa7872eaa413.png",
+    "static/media/Dave-full-band-color.png": "/static/media/Dave-full-band-color.379b5bbe39a47f8da021.png",
     "static/media/ITM-band-photo-alternate.webp": "/static/media/ITM-band-photo-alternate.fccf6118c7046390c929.webp",
+    "static/media/full-band-color.jpg": "/static/media/full-band-color.8d107479b012df598eff.jpg",
     "static/media/DA Album Photo.png": "/static/media/DA Album Photo.eec908dc07bd32578b41.png",
     "static/media/SD Album Photo.png": "/static/media/SD Album Photo.bc8243805025a85f1057.png",
     "static/media/bandNameLight.png": "/static/media/bandNameLight.27ad755cf6fd028f65a2.png",
@@ -29,12 +33,12 @@
     "static/media/ronnieBW.png": "/static/media/ronnieBW.62db9354f3219e4f2073.png",
     "static/media/killersLogo.png": "/static/media/killersLogo.d4a8ebbbcc19f12e8878.png",
     "index.html": "/index.html",
-    "main.2e492810.css.map": "/static/css/main.2e492810.css.map",
-    "main.bd7e8d58.js.map": "/static/js/main.bd7e8d58.js.map",
+    "main.4a487d03.css.map": "/static/css/main.4a487d03.css.map",
+    "main.a36c0451.js.map": "/static/js/main.a36c0451.js.map",
     "787.244e8ae1.chunk.js.map": "/static/js/787.244e8ae1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e492810.css",
-    "static/js/main.bd7e8d58.js"
+    "static/css/main.4a487d03.css",
+    "static/js/main.a36c0451.js"
   ]
 }
