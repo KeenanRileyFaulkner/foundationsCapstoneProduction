@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.7cb4bddb.css",
-    "main.js": "/static/js/main.5b871591.js",
+    "main.css": "/static/css/main.e126ef38.css",
+    "main.js": "/static/js/main.78fa7385.js",
     "static/js/787.244e8ae1.chunk.js": "/static/js/787.244e8ae1.chunk.js",
     "static/media/The Killers Homepage 1.png": "/static/media/The Killers Homepage 1.49201a6b751eee689cb2.png",
     "static/media/Ronnie-full-band-color.png": "/static/media/Ronnie-full-band-color.549d791e584573b23800.png",
@@ -10,18 +10,8 @@
     "static/media/Dave-full-band-color.png": "/static/media/Dave-full-band-color.379b5bbe39a47f8da021.png",
     "static/media/ITM-band-photo-alternate.webp": "/static/media/ITM-band-photo-alternate.fccf6118c7046390c929.webp",
     "static/media/full-band-color.jpg": "/static/media/full-band-color.8d107479b012df598eff.jpg",
-    "static/media/DA Album Photo.png": "/static/media/DA Album Photo.eec908dc07bd32578b41.png",
-    "static/media/SD Album Photo.png": "/static/media/SD Album Photo.bc8243805025a85f1057.png",
     "static/media/bandNameLight.png": "/static/media/bandNameLight.27ad755cf6fd028f65a2.png",
-    "static/media/spiralSoundWave.png": "/static/media/spiralSoundWave.36f0e7884f527d6838e1.png",
-    "static/media/PM Album Photo.png": "/static/media/PM Album Photo.ba530c8814304f47d30b.png",
-    "static/media/WW Album Photo.png": "/static/media/WW Album Photo.12dd22a86537bf07b154.png",
-    "static/media/BB Album Photo.png": "/static/media/BB Album Photo.f5ebad619c2b71fca8b7.png",
-    "static/media/ITM Album Photo.png": "/static/media/ITM Album Photo.6ecd562854229f16f6db.png",
-    "static/media/HF Album Photo.png": "/static/media/HF Album Photo.e4f1cf3ef63daa093bba.png",
-    "static/media/greenSoundWave.png": "/static/media/greenSoundWave.88c70faccdfd54ca67e0.png",
     "static/media/bandNameWhite.png": "/static/media/bandNameWhite.27e7f20b18bde98abfad.png",
-    "static/media/ST Album Photo.png": "/static/media/ST Album Photo.6cfccab4867cd094d57f.png",
     "static/media/brandonColor.png": "/static/media/brandonColor.729f64a1ead20e6b5cea.png",
     "static/media/daveColor.png": "/static/media/daveColor.4bc1fda86e40dd16c881.png",
     "static/media/markColor.png": "/static/media/markColor.0efafd770a0938810ab2.png",
@@ -32,14 +22,13 @@
     "static/media/markBW.png": "/static/media/markBW.c57a93cd30b54e29fa37.png",
     "static/media/ronnieBW.png": "/static/media/ronnieBW.62db9354f3219e4f2073.png",
     "static/media/killerK.png": "/static/media/killerK.100a018b74a7fdcc957e.png",
-    "static/media/killersLogo.png": "/static/media/killersLogo.d4a8ebbbcc19f12e8878.png",
     "index.html": "/index.html",
-    "main.7cb4bddb.css.map": "/static/css/main.7cb4bddb.css.map",
-    "main.5b871591.js.map": "/static/js/main.5b871591.js.map",
+    "main.e126ef38.css.map": "/static/css/main.e126ef38.css.map",
+    "main.78fa7385.js.map": "/static/js/main.78fa7385.js.map",
     "787.244e8ae1.chunk.js.map": "/static/js/787.244e8ae1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7cb4bddb.css",
-    "static/js/main.5b871591.js"
+    "static/css/main.e126ef38.css",
+    "static/js/main.78fa7385.js"
   ]
 }
