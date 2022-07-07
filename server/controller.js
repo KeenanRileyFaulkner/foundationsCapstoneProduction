@@ -18,8 +18,8 @@ const calcRandomTrackNum = arr => {
 module.exports = {
     getAlbumsForDisplay: (req, res) => {
         sequelize.query(`
-            SELECT album_id, album_name, image_url FROM albums
-            ORDER BY album_id`)
+            SELECT display_order, album_id, album_name, image_url FROM albums
+            ORDER BY display_order`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);
         })
@@ -31,6 +31,11 @@ module.exports = {
 
     getSong: (req, res) => {
         const { id } = req.params;
+        if(id.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
+        
         sequelize.query(`
             SELECT url FROM audios
             WHERE ${Number(id)} = album_id`)
@@ -56,6 +61,11 @@ module.exports = {
 
     getCoverAudio: (req, res) => {
         const { id } = req.params;
+        if(id.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
+
         sequelize.query(`
             SELECT audio_url FROM covers
             WHERE ${id} = cover_id`)
@@ -67,6 +77,10 @@ module.exports = {
 
     incrPlays: (req, res) => {
         const { id } = req.params;
+        if(id.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
         sequelize.query(`
             UPDATE covers
             SET total_plays = total_plays + 1
@@ -78,6 +92,10 @@ module.exports = {
     getKey: (req, res) => {
         const receivedPassword = req.body.password;
         const userID = req.body.username;
+        if(userID.includes(';') || receivedPassword.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+        }
+
         let storedPassword;
         sequelize.query(`
             SELECT password FROM passwords
@@ -119,6 +137,11 @@ module.exports = {
         const username = req.body.username;
         const password = req.body.password;
         const compareKey = req.body.serverKey;
+
+        if(username.includes(';') || password.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
 
         sequelize.query(`
             SELECT access_key FROM connection_data
@@ -163,20 +186,24 @@ module.exports = {
         let album_name;
         let release_year;
         let image_url;
+        let display_order;
 
         if(req.body.album_name === '') {
-            res.status(400).send('An album_name must be included in your request');
+            res.status(400).send('An album name must be included in your request');
             return;
         } else if (req.body.release_year === '') {
-            res.status(400).send('A release_year must be included in your request');
+            res.status(400).send('A release year must be included in your request');
             return;
         } else if (req.body.image_url === '') {
-            res.status(400).send('An image_url must be included in your request');
+            res.status(400).send('An image url must be included in your request');
             return;
+        } else if (req.body.display_order === '') {
+            res.status(400).send('A display order must be included in your request');
         } else {
             album_name = req.body.album_name;
             release_year = req.body.release_year;
             image_url = req.body.image_url;
+            display_order = req.body.display_order;
         }
 
         let num_tracks;
@@ -186,15 +213,20 @@ module.exports = {
             num_tracks = req.body.num_tracks;
         }
 
+        if(album_name.includes(';') || release_year.includes(';') || image_url.includes(';') || display_order.includes(';') || num_tracks.includes(';')){
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
+
         sequelize.query(`
             SELECT access_key FROM connection_data
             WHERE access_key = '${compareKey}'`)
         .then(dbRes => {
             if(typeof dbRes[0][0].access_key !== 'undefined') {
                 sequelize.query(`
-                    INSERT INTO albums (album_name, release_year, image_url, num_tracks)
+                    INSERT INTO albums (album_name, release_year, image_url, num_tracks, display_order)
                     VALUES
-                    ('${album_name}', ${release_year}, '${image_url}', ${num_tracks})`)
+                    ('${album_name}', ${release_year}, '${image_url}', ${num_tracks}, ${display_order})`)
                 .then(() => {
                     res.status(200).send('The album was successfully added. Go to "View Albums" in nav to see it.');
                 })
@@ -208,7 +240,7 @@ module.exports = {
         })
         .catch(err => {
             console.log(err);
-            res.status(401).send('You are not authorized to make that request');
+            res.status(401).send('You are not authorized to make that request. Are your inputs valid?');
         })
 
 
@@ -216,7 +248,8 @@ module.exports = {
 
     getAllAlbums: (req, res) => {
         sequelize.query(`
-            SELECT * FROM albums`)
+            SELECT * FROM albums
+            ORDER BY display_order`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);
         })
@@ -236,7 +269,7 @@ module.exports = {
 
         let valuesInOrder = [];
         columnsToUpdate.forEach(column => {
-            if (column === 'release_year' || column === 'num_tracks') {
+            if (column === 'release_year' || column === 'num_tracks' || column === 'display_order') {
                 valuesInOrder.push((Number(req.body[column])));
             } else {
                 valuesInOrder.push((`'${req.body[column]}'`));
@@ -244,6 +277,10 @@ module.exports = {
         });
 
         let updateValues = valuesInOrder.join(", ");
+        if(updateValues.includes(';') || columnsToUpdate.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+    }
 
         const moreThanOneUpdate = (valuesInOrder.length > 1);
 
@@ -266,14 +303,14 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error occurred');
+                        res.status(500).send('An unknown error occurred. Alpha Chars not allowed in numeric fields.');
                     })
                 } else {
                     sequelize.query(`
                         UPDATE albums SET ${columnNames} = ${updateValues}
                         WHERE album_id = ${album_id}
                         RETURNING *`)
-                    .then(() => {
+                    .then(dbRes => {
                         if (dbRes[1].rowCount > 0) {
                             res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
                         } else {
@@ -282,7 +319,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred');
+                        res.status(500).send('An unknown error has occurred. Alpha Chars not allowed in numeric fields.');
                     })
                 }
                 
@@ -298,6 +335,11 @@ module.exports = {
 
     deleteAlbum: (req, res) => {
         const {id} = req.params;
+        if(id.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
+
         sequelize.query(`
             DELETE FROM albums
             WHERE album_name = '${id}'`)
@@ -333,6 +375,11 @@ module.exports = {
             song_name = req.body.song_name;
             album_name = req.body.album_name;
             audio_url = req.body.audio_url;
+        }
+
+        if(song_name.includes(';') || album_name.includes(';') || audio_url.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
         }
 
         sequelize.query(`
@@ -408,6 +455,10 @@ module.exports = {
         });
 
         let updateValues = valuesInOrder.join(", ");
+        if(updateValues.includes(';') || columnsToUpdate.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+    }
 
         const moreThanOneUpdate = (valuesInOrder.length > 1);
 
@@ -430,7 +481,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id');
+                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id or song id.');
                     })
                 } else {
                     sequelize.query(`
@@ -446,7 +497,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id.');
+                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id or song id.');
                     })
                 }
                 
@@ -462,6 +513,11 @@ module.exports = {
 
     deleteSong: (req, res) => {
         const {id} = req.params;
+        if(id.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
+
         sequelize.query(`
             UPDATE albums
             SET num_tracks = num_tracks - 1
@@ -503,6 +559,11 @@ module.exports = {
             cover_name = req.body.cover_name;
             image_url = req.body.image_url;
             audio_url = req.body.audio_url;
+        }
+
+        if(cover_name.includes(';') || image_url.includes(';') || audio_url.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
         }
 
         sequelize.query(`
@@ -555,6 +616,11 @@ module.exports = {
 
         let updateValues = valuesInOrder.join(", ");
 
+        if(updateValues.includes(';') || columnsToUpdate.includes(';')) {
+                res.status(400).send('Disallowed input ";". Try again.');
+                return;
+        }
+
         const moreThanOneUpdate = (valuesInOrder.length > 1);
 
         sequelize.query(`
@@ -576,7 +642,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field')
+                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field. Alpha Chars not allowed in id field.')
                     })
                 } else {
                     sequelize.query(`
@@ -592,7 +658,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field');
+                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field. Alpha Chars not allowed in id field.');
                     })
                 }
                 
@@ -608,6 +674,10 @@ module.exports = {
 
     deleteCover: (req, res) => {
         const {id} = req.params;
+        if(id.includes(';')) {
+            res.status(400).send('Disallowed input ";". Try again.');
+            return;
+        }
         sequelize.query(`
             DELETE FROM covers
             WHERE cover_name = '${id}'`)
