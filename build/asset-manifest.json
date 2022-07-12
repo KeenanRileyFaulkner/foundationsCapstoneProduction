@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.03d8042b.css",
-    "main.js": "/static/js/main.bcf5e393.js",
+    "main.js": "/static/js/main.4d367b80.js",
     "static/js/787.244e8ae1.chunk.js": "/static/js/787.244e8ae1.chunk.js",
     "static/media/The Killers Homepage 1.png": "/static/media/The Killers Homepage 1.49201a6b751eee689cb2.png",
     "static/media/Ronnie-full-band-color.png": "/static/media/Ronnie-full-band-color.549d791e584573b23800.png",
@@ -24,11 +24,11 @@
     "static/media/killerK.png": "/static/media/killerK.100a018b74a7fdcc957e.png",
     "index.html": "/index.html",
     "main.03d8042b.css.map": "/static/css/main.03d8042b.css.map",
-    "main.bcf5e393.js.map": "/static/js/main.bcf5e393.js.map",
+    "main.4d367b80.js.map": "/static/js/main.4d367b80.js.map",
     "787.244e8ae1.chunk.js.map": "/static/js/787.244e8ae1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.03d8042b.css",
-    "static/js/main.bcf5e393.js"
+    "static/js/main.4d367b80.js"
   ]
 }
